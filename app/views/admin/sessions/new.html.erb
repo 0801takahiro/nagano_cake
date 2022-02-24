@@ -1,0 +1,16 @@
+<h2>管理者ログイン</h2>
+<%= form_with model: @admin, local: true do |f| %>
+<div>
+    <%= f.label :メールアドレス %>
+    <%= f.text_field :email, autofocus: true %>
+</div>
+
+<div>
+    <%= f.label :パスワード %>
+    <%= f.text_field :encrypted_password, autofocus: true %>
+</div>
+
+<div>
+    <%= f.submit "ログイン" %>
+</div>
+<% end %>

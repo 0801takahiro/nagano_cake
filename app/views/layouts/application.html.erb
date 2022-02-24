@@ -10,6 +10,91 @@
   </head>
 
   <body>
-    <%= yield %>
+  <header>
+  <% if admin_signed_in? %>
+    <div class="header">
+      <div class="header-logo">
+        <a href="/">
+         <div class="head-list">
+          <h2>NaganoCake</h2>
+         </div>
+        </a>
+      </div>
+      <div class="header-navber">
+        <div class="header-navicon">
+         <ul class="nav-icon">
+          <li class="nav-list"><%= link_to "商品一覧", admin_items_path %></li>
+          <li class="nav-list">会員一覧<%= link_to "会員一覧", admin_customers_path %></li>
+          <li class="nav-list">注文履歴<%= link_to "注文履歴", admin_orders_path %></li>
+          <li class="nav-list">ジャンル一覧<%= link_to "ジャンル一覧", admin_genres_path %></li>
+          <li class="nav-list">ログイン<%= link_to "ログイン", admin_sessions_path %></li>
+         </ul>
+        </div>
+        <div class="header-navsearch">
+          <p>検索</p>
+
+        </div>
+      </div>
+    </div>
+    <% elsif customer_signed_in? %>
+    <div class="header">
+      <div class="header-logo">
+        <a href="/">
+         <div class="head-list">
+          <h2>NaganoCake</h2>
+         </div>
+        </a>
+      </div>
+      <div>
+        ようこそ<%= current.custmer.first_name %>さん！
+      </div>
+      <div class="header-navber">
+        <div class="header-navicon">
+         <ul class="nav-icon">
+          <li class="nav-list"><%= link_to "マイページ", public_my_page_path %></li>
+          <li class="nav-list"><%= link_to "商品一覧", public_items_path %></li>
+          <li class="nav-list"><%= link_to "カート", public_cart_items_path %></li>
+          <li class="nav-list"><%= link_to"ログアウト", destroy_customer_session_path, method: :delete %></li>
+         </ul>
+        </div>
+        <div class="header-navsearch">
+          <p>検索</p>
+
+        </div>
+      </div>
+    </div>
+    <% else %>
+    <div class="header">
+      <div class="header-logo">
+        <a href="/">
+         <div class="head-list">
+          <h2>NaganoCake</h2>
+         </div>
+        </a>
+      </div>
+      <div class="header-navber">
+        <div class="header-navicon">
+         <ul class="nav-icon">
+          <li class="nav-list"><%= link_to "About", public_about_path %></li>
+          <li class="nav-list"><%= link_to "商品一覧", public_items_path %></li>
+          <li class="nav-list"><%= link_to "新規登録", new_customer_registration_path %></li>
+          <li class="nav-list"><%= link_to "ログイン", new_customer_session_path %></li>
+         </ul>
+        </div>
+        <div class="header-navsearch">
+          <p>検索</p>
+
+        </div>
+      </div>
+    </div>
+    <% end %>
+    </header>
+    <div class="main">
+      <%= yield %>
+    </div>
+    <div class="footer">
+      
+    </div>
+    
   </body>
 </html>

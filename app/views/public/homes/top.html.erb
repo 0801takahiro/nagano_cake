@@ -1,0 +1,35 @@
+<dev>
+ <table>
+  <thead>
+    <tr>
+      <th>ジャンル検索</th>
+    </tr>
+  </thead>
+  <% @items.each do |item| %>
+  <tbody>
+      <td>
+        <%= link_to @item.genre.name, public_genre_path(@item.genre_id) %>  
+      </td>
+  </tbody>
+  <% end %>
+  </table>
+</dev>
+<dev>
+    <h3>
+        ようこそながのCAKEへ！</br>
+        このサイトは、ケーキ販売のECサイトになります。</br>
+        会員でない方も商品の閲覧はできますが、</br>
+        購入には会員登録が必要になります。</br>
+    </h3>
+</dev>
+<dev>
+    <% @items.each do |item| %>
+    <h2>新商品</h2>
+    <a>image</a>
+    <h3><%= @item.name %></h3>
+    <h3><%= @item.price %></h3>
+    <% end %>
+</dev>
+<dev>
+    <%= link_to "すべての商品を見る", public_items_path %>
+</dev>

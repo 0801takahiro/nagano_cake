@@ -1,0 +1,38 @@
+<h2>商品編集</h2>
+<% form_with model:@item, url: admin_item_path, local:true do |f| %>
+<div>
+    <h1>商品画像</h1>
+</div>
+<div>
+    <h1>
+      商品名 <%= f.text_area :name %> 
+    </h1>
+</div>
+<div>
+    <h1>
+      商品説明 <%= f.text_area :introduction %> 
+    </h1>
+</div>
+<div>
+    <h1>
+      ジャンル  
+    </h1>
+</div>
+<div>
+    <h1>
+      税抜価格  <%= f.text_area :price %>円
+    </h1>
+</div>
+<div>
+    <h1>
+      
+      <%= f.radio_button :is_active, "true" %> 
+      <%= f.label :is_active, "販売中" %>
+      <%= f.radio_button :is_active, "false" %>
+      <%= f.label :is_active, "販売停止" %>
+    </h1>
+</div>
+<dev>
+    <%= f.submit '変更を保存' %>
+</dev>
+<% end %>

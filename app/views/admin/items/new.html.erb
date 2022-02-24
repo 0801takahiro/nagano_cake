@@ -1,0 +1,25 @@
+<h2>商品新規登録</h2>
+<div>
+    <%= form_with model:@item, url: admin_items_path do |f| %>
+　　<div>
+　　  <%= f.label :商品名 %>
+      <%= f.text_field :name %>
+　　</div>
+　　<div>
+　　  <%= f.label :商品説明 %>
+      <%= f.text_field :introduction %>
+　　</div>
+　　<div>
+　　  <%= f.label :ジャンル %>
+      <%= f.text_field :name %>
+　　</div>
+　　<div>
+　　      <%= f.radio_button :is_active, "true" %>
+　　      <%= f.label :is_active, "販売中" %>
+　　      <%= f.radio_button :is_active, "false" %>
+　　      <%= f.label :is_active, "販売停止" %>
+　　      
+　　</div>
+　　<%= f.submit "新規登録" %>
+　　<% end %>
+</div>

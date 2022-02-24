@@ -1,0 +1,17 @@
+<h2>配送先編集</h2>
+<%= form_with model:@address,url:public_addresses_path do |f| %>
+  　　<div class="form-group">
+      <%= f.label :郵便番号 %>
+      <%= f.text_area :postal_code %>
+      </dev>
+      <div class="form-group">
+      <%= f.label :住所 %>
+      <%= f.text_area :address %>
+      </dev>
+      <div class="form-group">
+      <%= f.label :宛名 %>
+      <%= f.text_area :name %>
+      <%= f.submit '変更内容を保存' %>
+      </dev>
+
+<% end %>
