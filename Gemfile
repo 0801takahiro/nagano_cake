@@ -65,3 +65,12 @@ gem 'devise'
 
 gem 'kaminari'
 gem 'enum_help'
+
+gem "refile", require: "refile/rails", github: 'manfe/refile'
+gem "refile-mini_magick"
+
+gem 'pry-byebug'
+
+gem 'rails-i18n', '~> 5.1'
+
+gem 'pry-rails'

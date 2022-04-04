@@ -1,6 +1,7 @@
 class Public::HomesController < ApplicationController
     def top
-        @items = Item.all
+        @items = Item.page(params[:page]).per(6)
+        @genres = Genre.all
     end
     
     def about

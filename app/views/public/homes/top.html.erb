@@ -1,4 +1,4 @@
-<dev>
+<div class = "genre_ber">
  <table>
   <thead>
     <tr>
@@ -8,28 +8,36 @@
   <% @items.each do |item| %>
   <tbody>
       <td>
-        <%= link_to @item.genre.name, public_genre_path(@item.genre_id) %>  
+        <%= item.genre.name %>  
       </td>
   </tbody>
   <% end %>
   </table>
-</dev>
-<dev>
+</div>
+<div class = "top">
     <h3>
         ようこそながのCAKEへ！</br>
         このサイトは、ケーキ販売のECサイトになります。</br>
         会員でない方も商品の閲覧はできますが、</br>
         購入には会員登録が必要になります。</br>
     </h3>
-</dev>
-<dev>
-    <% @items.each do |item| %>
+
+<div　class = "newitem">
+  
     <h2>新商品</h2>
-    <a>image</a>
-    <h3><%= @item.name %></h3>
-    <h3><%= @item.price %></h3>
+  
+    <% @items.each do |item| %>
+    <div class= "itemlist">
+    <%= link_to public_item_path(item) do %>
+    <%= attachment_image_tag item, :image , :size => '180x180' %>
+    <h3><%= item.name %></h3>
     <% end %>
-</dev>
-<dev>
+    <h3>￥<%= item.add_tax_price %></h3>
+    </div>
+    <% end %>
+  
+</div>
+</div>
+<div class = "toitems">
     <%= link_to "すべての商品を見る", public_items_path %>
-</dev>
+</div>

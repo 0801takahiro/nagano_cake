@@ -54,7 +54,7 @@ ActiveRecord::Schema.define(version: 2022_01_17_083552) do
     t.string "postal_code"
     t.string "address"
     t.string "telephone_number"
-    t.boolean "is_active"
+    t.boolean "is_active", default: true
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["email"], name: "index_customers_on_email", unique: true
@@ -73,7 +73,7 @@ ActiveRecord::Schema.define(version: 2022_01_17_083552) do
     t.string "image_id"
     t.text "introduction"
     t.integer "price"
-    t.boolean "is_active"
+    t.boolean "is_active", default: true
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -83,7 +83,7 @@ ActiveRecord::Schema.define(version: 2022_01_17_083552) do
     t.integer "item_id"
     t.integer "amount"
     t.integer "price"
-    t.integer "is_active"
+    t.boolean "is_active", default: true
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -91,7 +91,7 @@ ActiveRecord::Schema.define(version: 2022_01_17_083552) do
   create_table "orders", force: :cascade do |t|
     t.integer "customer_id"
     t.integer "payment_method"
-    t.integer "status"
+    t.integer "status", default: 0
     t.integer "total_payment"
     t.string "address"
     t.string "postal_code"

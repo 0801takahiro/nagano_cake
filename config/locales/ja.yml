@@ -1,0 +1,21 @@
+ja:
+  activerecord:
+    attributes:
+      item:
+        is_active:
+          true: '販売中'
+          fales: '販売停止'
+      customer:
+        is_active:
+          true: '有効'
+          fales: '退会'
+  enums:
+    order:
+      payment_method:
+        credit_card: 'クレジットカード'
+        transfer: '銀行振込'
+      status:
+        wait: '入金待ち'
+        check: '入金確認'
+        make: '製作中'
+        transfer: '発送済み'

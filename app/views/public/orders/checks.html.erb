@@ -1,5 +1,6 @@
+<div>
 <h2>注文情報確認</h2>
-<% total = 0 % %>
+
  <table>
   <thead>
     <tr>
@@ -9,12 +10,14 @@
       <th>小計</th>
     </tr>
   </thead>
+  <% @cart_item.each do |cart_item| %>
   <tbody>
-      <td>(cart_item_item_name)</td>
-      <td>(cart_item_item_price)</td>
-      <td>(cart_item_amout)</td>
-      <td>(cart_item_amout×item_price)</td>
+      <td><%= cart_item.item.name %></td>
+      <td><%= cart_item.item.add_tax_price %></td>
+      <td><%= cart_item.amount %></td>
+      <td><%= cart_item.subtotal %></td>
   </tbody>
+  <% end %>
  </table>
   <table>
   <thead>
@@ -25,11 +28,24 @@
     </tr>
   </thead>
   <tbody>
-      <td>(shiping_cost)</td>
-      <td>(total_payment)</td>
-      <td>(shipingcost+totalpayment)</td>
+      <td><%= @order.shipping_cost %></td>
+      <td><%= @total_price %></td>
+      <td><%= (@order.shipping_cost + @total_price) %></td>
   </tbody>
  </table>
- <h2>支払方法</h2>(payment_method)
- <h2>お届け先</h2>(postal_code)
- <a>(注文を確定する)ボタン</a>
+ <h2>支払方法</h2><%= @order.payment_method_i18n %>
+ <h2>お届け先</h2><%= @order.full_address %><%= @order.name %>
+ 
+<%= form_with model:@order, url: public_orders_path, method: :post, local:true do |f| %> 
+<div>
+    <%= f.hidden_field :shipping_cost, value: @order.shipping_cost %>
+    <%= f.hidden_field :name, value: @order.name %>
+    <%= f.hidden_field :customer_id, value: current_customer.id %>
+    <%= f.hidden_field :address, value: @order.address %>
+    <%= f.hidden_field :postal_code, value: @order.postal_code %>
+    <%= f.hidden_field :payment_method, value: @order.payment_method  %>
+    <%= f.hidden_field :total_payment, value: @total_price %>
+<%= f.submit "注文を確定する" %>
+</div>
+<% end %> 
+</div>

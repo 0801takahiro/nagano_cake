@@ -1,32 +1,32 @@
-<dev>
+<div class = "genre_ber">
  <table>
   <thead>
     <tr>
       <th>ジャンル検索</th>
     </tr>
   </thead>
+  <% @items.each do |item| %>
   <tbody>
-      <% @items.each do |item| %>
       <td>
-        <%= @item.genre.name %>  
+        <%= link_to item.genre.name %>  
       </td>
-      <% end %>
   </tbody>
-  
- </table>
-</dev>
-<dev>
-    <% @items.each do |item| %>
-    <h2>新商品</h2>
-    <a>image</a>
-    <h3><%= @item.name %></h3>
-    <h3><%= @item.price %></h3>
-</dev>
-    <% end %>
-<div class="pagination">
-    <p>1</p>
-    <p>2</p>
-    <p>3</p>
-    <p>Next></p>
-　　<p>Last>></p>
+  <% end %>
+  </table>
 </div>
+<div　class = "newitem">
+  
+    <h2>新商品</h2>
+    <% @items.each do |item| %>
+    <div class= "itemlist">
+    <%= link_to public_item_path(item) do %>
+    <%= attachment_image_tag item, :image , :size => '180x180' %>
+    <h3><%= item.name %></h3>
+    <% end %>
+    <h3>￥<%= item.add_tax_price %></h3>
+    </div>
+    <% end %>
+  
+</div>
+</div>
+<%= paginate @items %>

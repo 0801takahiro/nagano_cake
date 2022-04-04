@@ -1,0 +1,53 @@
+<div>
+    <h2>
+       注文履歴詳細 
+    </h2>
+    <div>
+    <table>
+     <tr><th>購入者</th></th><td><%= @order.customer.full_name %></td></tr>
+     <tr><th>注文日</th><td><%= @order.created_at %></td></tr>
+     <tr><th>配送先</th><td><%= @order.full_address %></br><%= @order.name %></td></tr>
+     <tr><th>支払方法</th><td><%= @order.payment_method_i18n %></td></tr>
+     <%= form_with model:@order, url: admin_order_path, local:true, method: :patch do |f| %>
+     <tr><th>注文ステータス</th><td><%= f.select :status, [['入金待ち',Order.statuses.key(0)],['入金確認',Order.statuses.key(1)], ['制作中',Order.statuses.key(2)], ['発送準備中',Order.statuses.key(3)],['発送済み',Order.statuses.key(4)]] %><%= f.submit "更新する" %></td></tr>
+     
+     <% end %>
+    </table> 
+        
+    </div>
+<div>
+<table>
+ <thead>
+    <tr>
+      <th>商品名</th>
+      <th>単価(税込)</th>
+      <th>数量</th>
+      <th>小計</th>
+      <th>製作ステータス</th>
+      <th></th>
+    </tr>
+  </thead>
+  <% @order_details.each do |order_detail| %>
+  <tbody>
+      
+      <tr>
+        <td><%= order_detail.item.name %></td>
+        <td><%= order_detail.price %></td>
+        <td>
+          <%= order_detail.amount %>
+        </td>
+        <td><%= (order_detail.price*order_detail.amount) %></td>
+        <%= form_with model:@order_detail, url: admin_order_detail_path, local:true, method: :patch do |f| %>
+        <td><%= f.select :is_active, [['着手不可',OrderDetail.is_actives.key(0)],['製作待ち',OrderDetail.is_actives.key(1)], ['制作中',OrderDetail.is_actives.key(2)], ['製作完了',OrderDetail.is_actives.key(3)]] %></td>
+        <td><%= f.submit "更新する" %></td>
+        <% end %>
+      </tr>
+     
+  </tbody>
+  <% end %>
+</table>
+  <strong>商品合計</strong><%= @order.total_payment %>円</br>
+  <strong>送料</strong><%= @order.shipping_cost %>円</br>
+  <strong>請求金額合計</strong><%= (@order.total_payment+@order.shipping_cost) %>円</br>
+</div>
+</div>

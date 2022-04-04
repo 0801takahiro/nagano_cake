@@ -1,6 +1,10 @@
+<div>
 <h2>商品新規登録</h2>
 <div>
-    <%= form_with model:@item, url: admin_items_path do |f| %>
+    <%= form_with model: @item , url: admin_items_path, local: true do |f| %>
+    <div>
+      <%= f.attachment_field :image %>
+    </div>
 　　<div>
 　　  <%= f.label :商品名 %>
       <%= f.text_field :name %>
@@ -11,7 +15,11 @@
 　　</div>
 　　<div>
 　　  <%= f.label :ジャンル %>
-      <%= f.text_field :name %>
+      <%= f.select :genre_id, options_from_collection_for_select(Genre.all, :id, :name) %>
+　　</div>
+　　<div>
+　　    <%= f.label :税抜価格 %>
+　　    <%= f.text_field :price %>円
 　　</div>
 　　<div>
 　　      <%= f.radio_button :is_active, "true" %>
@@ -22,4 +30,5 @@
 　　</div>
 　　<%= f.submit "新規登録" %>
 　　<% end %>
+</div>
 </div>

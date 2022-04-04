@@ -1,4 +1,5 @@
-<h2>ジャンル編集</h2>
+<div>
+<h2>ジャンル編集</h2><a class = "itemplus",
 <div>
     <%= form_with model:@genre, url: admin_genre_path, local:true do |f| %>
 　　<div>
@@ -9,4 +10,5 @@
 　　<%= f.submit "変更を保存" %>
 　　</div>
 　　<% end %>
+</div>
 </div>
